@@ -53,7 +53,7 @@ const MediaUploader = ({
 
   return (
     <CldUploadWidget
-      uploadPreset="snaptify"
+      uploadPreset="aiditor"
       options={{
         multiple: false,
         resourceType: "image",
