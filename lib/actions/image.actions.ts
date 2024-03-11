@@ -132,10 +132,10 @@ export async function getAllImages({
         publicId: {
           $in: resourceIds,
         },
-        privacy: 1,
+        privacy: "public",
       };
     } else {
-      query = { privacy: 1 };
+      query = { privacy: "public" };
     }
 
     const skipAmount = (Number(page) - 1) * limit;

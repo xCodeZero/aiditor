@@ -233,16 +233,16 @@ export const aspectRatioOptions = {
   },
 };
 
-export const privacyOptions = {
-  Private: {
-    privacy: 2,
+export const privacyOptions = [
+  {
+    privacy: "private",
     label: "Private Image",
   },
-  Public: {
-    privacy: 1,
+  {
+    privacy: "public",
     label: "Public Image",
   },
-};
+];
 
 export const defaultValues = {
   title: "",

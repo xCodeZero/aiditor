@@ -47,12 +47,16 @@ import { useRouter } from "next/navigation";
 import { InsufficientCreditsModal } from "./InsufficientCreditsModal";
 
 export const formSchema = z.object({
-  title: z.string(),
+  title: z.string().min(2, {
+    message: "Please enter a title.",
+  }),
   aspectRatio: z.string().optional(),
   color: z.string().optional(),
   prompt: z.string().optional(),
   publicId: z.string(),
-  privacy: z.number().optional(),
+  privacy: z.string().min(2, {
+    message: "Please select image privacy.",
+  }),
 });
 
 const TransformationForm = ({
@@ -72,7 +76,6 @@ const TransformationForm = ({
   const [transformationConfig, setTransformationConfig] = useState(config);
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
-  const [privacy, setPrivacy] = useState(data);
 
   const initialValues =
     data && action === "Update"
@@ -178,22 +181,6 @@ const TransformationForm = ({
     return onChangeField(value);
   };
 
-  const onSelectPrivacyHandler = (
-    value: string,
-    onChangeField: (value: string) => void
-  ) => {
-    const privacy = privacyOptions[value as PrivacyOptionKey];
-
-    setPrivacy((prevState: any) => ({
-      ...prevState,
-      privacy: privacy.privacy,
-    }));
-
-    setNewTransformation(transformationType.config);
-
-    return onChangeField(value);
-  };
-
   const onInputChangeHandler = (
     fieldName: string,
     value: string,
@@ -251,14 +238,23 @@ const TransformationForm = ({
           formLabel="Image Privacy"
           className="w-full"
           render={({ field }) => (
-            <Select>
+            <Select
+              onValueChange={(privacy) => field.onChange(privacy)}
+              defaultValue={undefined}
+            >
               <SelectTrigger className="w-[180px] ">
                 <SelectValue placeholder="Select Image Privacy" />
               </SelectTrigger>
               <SelectContent>
-                {Object.keys(privacyOptions).map((key) => (
-                  <SelectItem key={key} value={key} className="select-item">
-                    {privacyOptions[key as PrivacyOptionKey].label}
+                {privacyOptions.map((data) => (
+                  <SelectItem
+                    key={data.privacy}
+                    value={data.privacy}
+                    // value={data.privacy}
+                    className="select-item"
+                    onChange={(privacy) => field.onChange(privacy)}
+                  >
+                    {data.label}
                   </SelectItem>
                 ))}
               </SelectContent>

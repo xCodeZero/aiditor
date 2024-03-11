@@ -35,7 +35,7 @@ const ImageSchema = new Schema({
   color: { type: String },
   prompt: { type: String },
   author: { type: Schema.Types.ObjectId, ref: "User" },
-  privacy: { type: Number, default: 1 },
+  privacy: { type: String },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });
