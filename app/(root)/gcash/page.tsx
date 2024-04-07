@@ -1,29 +1,29 @@
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { navLinks, adminNavLinks } from "@/constants";
-import Link from "next/link";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
+import Header from "@/components/shared/Header";
 import { getUserById } from "@/lib/actions/user.actions";
+import { getUserPaymentsGcash } from "@/lib/actions/payments.action";
+import { GcashPaymentCollection } from "@/components/shared/GcashPaymentCollection";
+import { adminNavLinks, navLinks } from "@/constants";
+import Link from "next/link";
 import Image from "next/image";
 
-const Gcash = async () => {
+const GcashPayments = async ({ searchParams }: SearchParamProps) => {
+  const page = Number(searchParams?.page) || 1;
   const { userId } = auth();
+
   if (!userId) redirect("/sign-in");
+
   const user = await getUserById(userId);
+
+  if (user.userRole !== 2) redirect("/sign-in");
+
+  const gcash = await getUserPaymentsGcash({ page });
+
   return (
-    <div>
+    <>
       <section className="home">
-        <h1 className="home-heading">
-          Unleash Your Creative Vision with AIditor
-        </h1>
+        <h1 className="home-heading">Gcash Payment Records</h1>
 
         {user.userRole === 1 && (
           <ul className="flex-center w-full gap-20">
@@ -63,27 +63,16 @@ const Gcash = async () => {
           </ul>
         )}
       </section>
-      <Table className="mt-10">
-        <TableCaption>A list of your recent invoices.</TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-[100px]">Invoice</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Method</TableHead>
-            <TableHead className="text-right">Amount</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          <TableRow>
-            <TableCell className="font-medium">INV001</TableCell>
-            <TableCell>Paid</TableCell>
-            <TableCell>Credit Card</TableCell>
-            <TableCell className="text-right">$250.00</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </div>
+
+      <section className="mt-8 md:mt-14">
+        <GcashPaymentCollection
+          payments={gcash?.data}
+          totalPages={gcash?.totalPages}
+          page={page}
+        />
+      </section>
+    </>
   );
 };
 
-export default Gcash;
+export default GcashPayments;

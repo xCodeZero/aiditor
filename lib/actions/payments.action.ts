@@ -67,3 +67,36 @@ export async function getUserPayments({
     handleError(error);
   }
 }
+
+// GET PAYMENTS BY USER
+export async function getUserPaymentsGcash({
+  limit = 9,
+  page = 1,
+}: {
+  limit?: number;
+  page: number;
+}) {
+  try {
+    await connectToDatabase();
+
+    const skipAmount = (Number(page) - 1) * limit;
+
+    const payments = await populateUser(Payment.find({ paymentType: "gcash" }))
+      .sort({ createdAt: -1 })
+      .skip(skipAmount)
+      .limit(limit);
+
+    console.log(payments);
+
+    const totalPayments = await Payment.find({
+      paymentType: "gcash",
+    }).countDocuments();
+
+    return {
+      data: JSON.parse(JSON.stringify(payments)),
+      totalPages: Math.ceil(totalPayments / limit),
+    };
+  } catch (error) {
+    handleError(error);
+  }
+}

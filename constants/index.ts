@@ -62,11 +62,6 @@ export const paymentLinks = [
     route: "/gcashpayment/pay/gcash",
     icon: "/assets/icons/gcash.png",
   },
-  {
-    label: "Buy Credits Using Bank Transfer",
-    route: "/bankpayment/pay/bank",
-    icon: "/assets/icons/banking.png",
-  },
 ];
 
 export const adminNavLinks = [
@@ -81,9 +76,9 @@ export const adminNavLinks = [
     icon: "/assets/icons/gcash.png",
   },
   {
-    label: "Bank Transfer",
-    route: "/bank",
-    icon: "/assets/icons/banking.png",
+    label: "Credit Card",
+    route: "/card",
+    icon: "/assets/icons/atm-card.png",
   },
   {
     label: "All Transactions",
