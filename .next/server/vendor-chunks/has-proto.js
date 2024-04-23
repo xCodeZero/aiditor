@@ -21,16 +21,6 @@ eval("\nvar test = {\n    __proto__: null,\n    foo: {}\n};\nvar $Object = Objec
 
 /***/ }),
 
-/***/ "(action-browser)/./node_modules/has-proto/index.js":
-/*!*****************************************!*\
-  !*** ./node_modules/has-proto/index.js ***!
-  \*****************************************/
-/***/ ((module) => {
-
-eval("\nvar test = {\n    __proto__: null,\n    foo: {}\n};\nvar $Object = Object;\n/** @type {import('.')} */ module.exports = function hasProto() {\n    // @ts-expect-error: TS errors on an inherited property for some reason\n    return ({\n        __proto__: test\n    }).foo === test.foo && !(test instanceof $Object);\n};\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFjdGlvbi1icm93c2VyKS8uL25vZGVfbW9kdWxlcy9oYXMtcHJvdG8vaW5kZXguanMiLCJtYXBwaW5ncyI6IkFBQUE7QUFFQSxJQUFJQSxPQUFPO0lBQ1ZDLFdBQVc7SUFDWEMsS0FBSyxDQUFDO0FBQ1A7QUFFQSxJQUFJQyxVQUFVQztBQUVkLHdCQUF3QixHQUN4QkMsT0FBT0MsT0FBTyxHQUFHLFNBQVNDO0lBQ3pCLHVFQUF1RTtJQUN2RSxPQUFPO1FBQUVOLFdBQVdEO0lBQUssR0FBRUUsR0FBRyxLQUFLRixLQUFLRSxHQUFHLElBQ3ZDLENBQUVGLENBQUFBLGdCQUFnQkcsT0FBTTtBQUM3QiIsInNvdXJjZXMiOlsid2VicGFjazovL2FpZGl0b3IvLi9ub2RlX21vZHVsZXMvaGFzLXByb3RvL2luZGV4LmpzPzZmMDIiXSwic291cmNlc0NvbnRlbnQiOlsiJ3VzZSBzdHJpY3QnO1xuXG52YXIgdGVzdCA9IHtcblx0X19wcm90b19fOiBudWxsLFxuXHRmb286IHt9XG59O1xuXG52YXIgJE9iamVjdCA9IE9iamVjdDtcblxuLyoqIEB0eXBlIHtpbXBvcnQoJy4nKX0gKi9cbm1vZHVsZS5leHBvcnRzID0gZnVuY3Rpb24gaGFzUHJvdG8oKSB7XG5cdC8vIEB0cy1leHBlY3QtZXJyb3I6IFRTIGVycm9ycyBvbiBhbiBpbmhlcml0ZWQgcHJvcGVydHkgZm9yIHNvbWUgcmVhc29uXG5cdHJldHVybiB7IF9fcHJvdG9fXzogdGVzdCB9LmZvbyA9PT0gdGVzdC5mb29cblx0XHQmJiAhKHRlc3QgaW5zdGFuY2VvZiAkT2JqZWN0KTtcbn07XG4iXSwibmFtZXMiOlsidGVzdCIsIl9fcHJvdG9fXyIsImZvbyIsIiRPYmplY3QiLCJPYmplY3QiLCJtb2R1bGUiLCJleHBvcnRzIiwiaGFzUHJvdG8iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///(action-browser)/./node_modules/has-proto/index.js\n");
-
-/***/ }),
-
 /***/ "(rsc)/./node_modules/has-proto/index.js":
 /*!*****************************************!*\
   !*** ./node_modules/has-proto/index.js ***!
