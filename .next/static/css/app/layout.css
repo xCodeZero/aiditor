@@ -710,6 +710,9 @@ video {
 .max-h-screen {
   max-height: 100vh;
 }
+.max-h-40 {
+  max-height: 10rem;
+}
 .w-10 {
   width: 2.5rem;
 }
@@ -851,6 +854,9 @@ video {
 }
 .overflow-hidden {
   overflow: hidden;
+}
+.overflow-y-auto {
+  overflow-y: auto;
 }
 .truncate {
   overflow: hidden;
